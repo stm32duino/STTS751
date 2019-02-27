@@ -1,0 +1,36 @@
+#######################################
+# Syntax Coloring Map For STTS751
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+STTS751Sensor	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+ReadID	KEYWORD2
+Enable	KEYWORD2
+Disable	KEYWORD2
+GetOutputDataRate	KEYWORD2
+SetOutputDataRate	KEYWORD2
+GetTemperature	KEYWORD2
+Get_DRDY_Status	KEYWORD2
+SetLowTemperatureThreshold	KEYWORD2
+SetHighTemperatureThreshold	KEYWORD2
+GetTemperatureLimitStatus	KEYWORD2
+SetEventPin	KEYWORD2
+Read_Reg	KEYWORD2
+Write_Reg	KEYWORD2
+Set_One_Shot	KEYWORD2
+Get_One_Shot_Status	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+STTS751_OK	LITERAL1
+STTS751_ERROR	LITERAL1
