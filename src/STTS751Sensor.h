@@ -68,7 +68,7 @@ typedef enum
 class STTS751Sensor
 {
   public:
-    STTS751Sensor(TwoWire *i2c, uint8_t address=STTS751_0xxxx_ADD_7K5);
+    STTS751Sensor(TwoWire *i2c, uint8_t address=STTS751_1xxxx_ADD_7K5);
     STTS751StatusTypeDef ReadID(uint8_t *Id);
     STTS751StatusTypeDef Enable();
     STTS751StatusTypeDef Disable();
