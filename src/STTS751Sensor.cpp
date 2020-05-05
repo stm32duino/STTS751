@@ -374,9 +374,20 @@ STTS751StatusTypeDef STTS751Sensor::GetTemperatureLimitStatus(uint8_t *HighLimit
     return STTS751_ERROR;
   }
 
-  *HighLimit = status.t_high;
-  *LowLimit = status.t_low;
-  *ThermLimit = status.thrm;
+  if(HighLimit)
+  {
+    *HighLimit = status.t_high;
+  }
+
+  if(LowLimit)
+  {
+    *LowLimit = status.t_low;
+  }
+
+  if(ThermLimit)
+  {
+    *ThermLimit = status.thrm;
+  }
 
   return STTS751_OK;
 }
