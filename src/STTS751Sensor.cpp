@@ -52,28 +52,51 @@ STTS751Sensor::STTS751Sensor(TwoWire *i2c, uint8_t address) : dev_i2c(i2c), addr
   reg_ctx.write_reg = STTS751_io_write;
   reg_ctx.read_reg = STTS751_io_read;
   reg_ctx.handle = (void *)this;
-  
+  temp_is_enabled = 0U;
+}
+
+/**
+ * @brief  Configure the sensor in order to be used
+ * @retval 0 in case of success, an error code otherwise
+ */
+STTS751StatusTypeDef STTS751Sensor::begin()
+{
   /* Disable EVENT pin of SMBus. */
   if (stts751_pin_event_route_set(&reg_ctx,  PROPERTY_ENABLE) != STTS751_OK)
   {
-    return;
+    return STTS751_ERROR;
   }
   /* Set default ODR */
   temp_odr = 1.0f;
   /* Set the resolution to the maximum allowed value */
   if (stts751_resolution_set(&reg_ctx, STTS751_12bit) != STTS751_OK)
   {
-    return;
+    return STTS751_ERROR;
   }
   /* Put the component in standby mode. */
   if (stts751_temp_data_rate_set(&reg_ctx, STTS751_TEMP_ODR_OFF) != STTS751_OK)
   {
-    return;
+    return STTS751_ERROR;
   }
-  
-  temp_is_enabled = 0;
-  
-  return;
+
+  temp_is_enabled = 0U;
+
+  return STTS751_OK;
+}
+
+/**
+ * @brief  Disable the sensor and relative resources
+ * @retval 0 in case of success, an error code otherwise
+ */
+STTS751StatusTypeDef STTS751Sensor::end()
+{
+  /* Disable temperature sensor */
+  if (Disable() != STTS751_OK)
+  {
+    return STTS751_ERROR;
+  }
+
+  return STTS751_OK;
 }
 
 /**
