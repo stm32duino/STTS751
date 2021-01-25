@@ -6,19 +6,24 @@ Arduino library to support the STTS751 digital temperature sensor
 This sensor uses I2C to communicate.
 For I2C it is then required to create a TwoWire interface before accessing to the sensors:  
 
-    dev_i2c = new TwoWire(I2C_SDA, I2C_SCL);  
-    dev_i2c->begin();
+    TwoWire dev_i2c(I2C_SDA, I2C_SCL);  
+    dev_i2c.begin();
 
-An instance can be created and enbaled when the I2C bus is used following the procedure below:  
+An instance can be created and enabled when the I2C bus is used following the procedure below:  
 
-    Temp = new STTS751Sensor(dev_i2c);  
-    Temp->Enable();
+    STTS751Sensor Temp(&dev_i2c, I2C_ADDRESS);
+    Temp.begin();
+    Temp.Enable();
+
+I2C_ADDRESS depends on the ID of the sensor and the pull-up resistor value connected to Addr/Therm pin.
+Please check the Datasheet for more information.
 
 The access to the sensor values is done as explained below:  
 
   Read temperature.  
 
-    Temp->GetTemperature(&temperature);
+    float temperature;
+    Temp.GetTemperature(&temperature);
 
 ## Documentation
 
